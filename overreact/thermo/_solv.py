@@ -5,10 +5,10 @@ from __future__ import annotations
 import logging
 
 import numpy as np
-from scipy.misc import derivative
 
 import overreact as rx
 from overreact import _constants as constants
+from overreact._misc import _derivative as derivative
 from overreact import coords
 
 logger = logging.getLogger(__name__)
@@ -123,14 +123,14 @@ def calc_cav_entropy(
             + (y * solvent.Vm * pressure / (constants.R * temperature)) * ratio**3
         )
         return -constants.R * temperature * gamma
-
+    
     cavity_entropy = derivative(
         func,
         x0=temperature,
         dx=dx,
         n=1,
-        order=order,
         args=(environment,),
+        order=order,
     )
     logger.info(f"cavity entropy = {cavity_entropy} J/mol·K")
     return cavity_entropy

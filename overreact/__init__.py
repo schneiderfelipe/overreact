@@ -4,7 +4,7 @@ from __future__ import annotations
 
 __docformat__ = "restructuredtext"
 
-import pkg_resources as _pkg_resources
+from importlib.metadata import version
 
 from overreact.api import (
     get_enthalpies,
@@ -48,7 +48,7 @@ __all__ = [
     "unparse_reactions",
 ]
 
-__version__ = _pkg_resources.get_distribution(__name__).version
+__version__ = version(__name__)
 __license__ = "MIT"  # I'm too lazy to get it from setup.py...
 
 __headline__ = "📈 Create and analyze chemical microkinetic models built from computational chemistry data."
